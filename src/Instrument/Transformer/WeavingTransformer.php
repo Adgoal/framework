@@ -113,6 +113,7 @@ class WeavingTransformer extends BaseSourceTransformer
      * Performs weaving of single class if needed, returns true if the class was processed
      *
      * @param Advisor[] $advisors List of advisors
+     * @return bool
      */
     private function processSingleClass(array $advisors, StreamMetaData $metadata, ReflectionClass $class): bool
     {
@@ -156,7 +157,10 @@ class WeavingTransformer extends BaseSourceTransformer
     /**
      * Adjust definition of original class source to enable extending
      *
+     * @param \ReflectionClass $class
      * @param array $advices List of class advices (used to check for final methods and make them non-final)
+     * @param StreamMetaData $streamMetaData
+     * @param string $newClassName
      */
     private function adjustOriginalClass(
         ReflectionClass $class,
